@@ -31,7 +31,7 @@ public class Email {
         System.out.println("The new password is: " + password);
     }
 
-    // Setters and getters
+    // setters and getters
     public String getFirstName() {
         return firstName;
     }
@@ -41,7 +41,6 @@ public class Email {
     }
 
     public String getEmail() {
-
         return email;
     }
 
@@ -93,28 +92,13 @@ public class Email {
         return new String(password);
     }
 
-    public static void printEmail() {
-        Email user = findUser();
-        if (user != null) {
-            System.out.println("The email of " + user.getFirstName() + " "
-                    + user.getLastName() + " is:\n" + user.getEmail());
-        } else {
-            System.out.println("There is no user with this name.");
-        }
-    }
 
     public String getPassword() {
         return password;
     }
 
-    public String getAlternateEmail() {
-        return alternateEmail;
-    }
+
     // ----------------------------- Methods ------------------------------------------------
-
-
-
-
     public static void optionsMenu() {
         System.out.println("---------------------------------------------------\n"
                 + "Welcome to EmailApp for @genericCompanyName.\n\n\n" +
@@ -145,8 +129,19 @@ public class Email {
     }
 
 
-    // Change password by the user.
-    public static void userChangePassword() {
+    public static void printEmail() {
+        Email user = findUser();
+        if (user != null) {
+            System.out.println("The email of " + user.getFirstName() + " "
+                    + user.getLastName() + " is:\n" + user.getEmail());
+        } else {
+            System.out.println("There is no user with this name.");
+        }
+    }
+
+
+    // Ability of user to change his/her/them password.
+    public static void passwordChangeUser() {
         Email user = findUser();
         String oldPassword;
         String newPassword;
@@ -167,7 +162,7 @@ public class Email {
 
 
     // New password for the user.
-    public static void issueNewPassword() {
+    public static void createNewPassword() {
         Email user;
         user = findUser();
         if (user != null) {
@@ -191,19 +186,6 @@ public class Email {
     }
 
 
-    public static void alternateMailbox() {
-        Email user = findUser();
-        if (user != null) {
-            System.out.println("Provide me the alternate email of the user: " + user.getEmail());
-            String alternateEmail = input.nextLine();
-            alternateEmail = alternateEmail.replaceAll("\\s+", "");
-            user.setAlternateEmail(alternateEmail);
-            System.out.println("New alternate email is saved.");
-        } else {
-            System.out.println("There is no user with this name.");
-        }
-    }
-
 
     public static void changeMailboxCapacity() {
         Email user;
@@ -218,17 +200,19 @@ public class Email {
         }
     }
 
-    private static String userInput(String firstOrLastName) {
-        System.out.println("Enter the " + firstOrLastName + " of the user:\r");
-        String name = input.nextLine();
-        // The following line is to eliminate white space and
-        // also to prevent errors from capitalization
-        name = name.replaceAll("\\s+", "").toLowerCase();
-        return name;
 
+    public static void alternateMailbox() {
+        Email user = findUser();
+        if (user != null) {
+            System.out.println("Provide me the alternate email of the user: " + user.getEmail());
+            String alternateEmail = input.nextLine();
+            alternateEmail = alternateEmail.replaceAll("\\s+", "");
+            user.setAlternateEmail(alternateEmail);
+            System.out.println("New alternate email is saved.");
+        } else {
+            System.out.println("There is no user with this name.");
+        }
     }
-
-
 
 
     public static void printEmailAccounts() {
@@ -241,6 +225,16 @@ public class Email {
     }
 
 
+    private static String userInput(String firstOrLastName) {
+        System.out.println("Enter the " + firstOrLastName + " of the user:\r");
+        String name = input.nextLine();
+        // The following line is to eliminate white space and
+        // also to prevent errors from capitalization
+        name = name.replaceAll("\\s+", "").toLowerCase();
+        return name;
+    }
+
+
     private static Email findUser() {
         String firstName = userInput("first name");
         String lastName = userInput("last name");
@@ -249,7 +243,6 @@ public class Email {
                     && checkedUser.getLastName().equals(lastName)) {
                 return checkedUser;
             }
-
         }
         return null;
     }
