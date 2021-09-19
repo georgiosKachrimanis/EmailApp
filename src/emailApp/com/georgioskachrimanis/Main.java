@@ -8,7 +8,7 @@ package emailApp.com.georgioskachrimanis;
 
 import java.util.Scanner;
 
-public class EmailApp {
+public class Main {
 
     private static final Scanner input = new Scanner(System.in);
 
@@ -37,11 +37,11 @@ public class EmailApp {
                     break;
 
                 case 3: // Password change by the user.
-                    Email.userChangePassword();
+                    Email.passwordChangeUser();
                     break;
 
                 case 4: // Issue new password.
-                    Email.issueNewPassword();
+                    Email.createNewPassword();
                     break;
 
                 case 5: // Get mailbox capacity.
